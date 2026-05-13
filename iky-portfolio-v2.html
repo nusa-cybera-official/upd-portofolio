@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="Y0lw3a_4a0pFVFW8AXbrmqvvqh-qTIkpu1HoDwnKR-o" />
+<title>IKY — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05020f;--bg2:#0d0620;--cyan:#bf00ff;--orange:#ff6b00;
+  --green:#00ff88;--red:#ff2244;--text:#ddc8f0;--muted:#5a3a70;--border:rgba(191,0,255,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+
+/* GRID BG */
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(191,0,255,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(191,0,255,.025) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none;z-index:0;}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(3,6,15,.95);border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);transition:all .3s;}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 20px;
+  height:58px;display:flex;align-items:center;gap:16px;}
+.nav-logo{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;
+  color:var(--cyan);letter-spacing:4px;text-shadow:0 0 16px rgba(191,0,255,.4);
+  text-decoration:none;flex-shrink:0;}
+.nav-logo span{color:var(--orange);}
+.nav-space{flex:1;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-link{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;
+  color:var(--muted);text-decoration:none;padding:6px 12px;border:1px solid transparent;
+  transition:all .2s;cursor:pointer;}
+.nav-link:hover,.nav-link.active{color:var(--cyan);border-color:rgba(191,0,255,.2);
+  background:rgba(191,0,255,.05);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.nav-burger span{width:22px;height:2px;background:var(--cyan);transition:all .3s;display:block;}
+.nav-burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.nav-burger.open span:nth-child(2){opacity:0;}
+.nav-burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;z-index:999;
+  background:rgba(3,6,15,.98);border-bottom:1px solid var(--border);
+  padding:16px;flex-direction:column;gap:4px;backdrop-filter:blur(12px);}
+.mobile-menu.open{display:flex;}
+.mobile-link{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px;
+  color:var(--muted);text-decoration:none;padding:12px 16px;border:1px solid transparent;
+  transition:all .2s;cursor:pointer;display:block;}
+.mobile-link:hover{color:var(--cyan);border-color:rgba(191,0,255,.2);background:rgba(191,0,255,.05);}
+
+/* SECTIONS */
+section{position:relative;z-index:1;}
+.container{max-width:1100px;margin:0 auto;padding:0 20px;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:58px;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  padding:60px 0;}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(191,0,255,.06);border:1px solid rgba(191,0,255,.2);
+  padding:5px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;
+  color:var(--cyan);letter-spacing:2px;margin-bottom:20px;
+  animation:fadeUp .6s ease both;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero-name{font-family:'Orbitron',monospace;font-size:clamp(36px,6vw,72px);
+  font-weight:900;line-height:1;letter-spacing:2px;
+  color:#fff;text-shadow:0 0 40px rgba(191,0,255,.2);
+  animation:fadeUp .6s .1s ease both;}
+.hero-name span{color:var(--cyan);display:block;}
+.hero-role{font-family:'Share Tech Mono',monospace;font-size:14px;
+  color:var(--orange);letter-spacing:3px;margin:14px 0;
+  animation:fadeUp .6s .2s ease both;}
+.hero-desc{font-size:16px;color:#8aa0b8;line-height:1.7;max-width:480px;
+  animation:fadeUp .6s .3s ease both;}
+.hero-btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;
+  animation:fadeUp .6s .4s ease both;}
+.btn-primary{padding:11px 24px;font-family:'Orbitron',monospace;font-size:11px;
+  letter-spacing:2px;border:1px solid var(--cyan);background:rgba(191,0,255,.1);
+  color:var(--cyan);cursor:pointer;text-decoration:none;display:inline-block;
+  transition:all .2s;}
+.btn-primary:hover{background:rgba(191,0,255,.2);box-shadow:0 0 20px rgba(191,0,255,.2);}
+.btn-secondary{padding:11px 24px;font-family:'Orbitron',monospace;font-size:11px;
+  letter-spacing:2px;border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-secondary:hover{border-color:var(--orange);color:var(--orange);}
+.hero-right{display:flex;justify-content:center;align-items:center;
+  animation:fadeUp .6s .3s ease both;}
+.hero-avatar-wrap{position:relative;width:280px;height:280px;}
+.hero-avatar-bg{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(191,0,255,.1),transparent 70%);}
+.hero-hexagon{width:100%;height:100%;position:relative;display:flex;
+  align-items:center;justify-content:center;}
+.hero-hexagon svg{width:100%;height:100%;filter:drop-shadow(0 0 20px rgba(191,0,255,.3));
+  animation:hexspin 20s linear infinite;}
+@keyframes hexspin{0%{filter:drop-shadow(0 0 10px rgba(191,0,255,.2));}
+  50%{filter:drop-shadow(0 0 30px rgba(191,0,255,.5));}
+  100%{filter:drop-shadow(0 0 10px rgba(191,0,255,.2));}}
+.hero-initials{position:absolute;font-family:'Orbitron',monospace;font-size:52px;
+  font-weight:900;color:var(--cyan);text-shadow:0 0 30px rgba(191,0,255,.6);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* STATS */
+.hero-stats{display:flex;gap:24px;margin-top:28px;flex-wrap:wrap;animation:fadeUp .6s .5s ease both;}
+.stat{text-align:center;}
+.stat-num{font-family:'Orbitron',monospace;font-size:22px;color:var(--cyan);font-weight:700;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);
+  letter-spacing:2px;margin-top:2px;}
+
+/* SECTION COMMON */
+.sec-pad{padding:80px 0;}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(20px,3vw,28px);
+  font-weight:700;color:#fff;letter-spacing:3px;margin-bottom:8px;}
+.sec-title span{color:var(--cyan);}
+.sec-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:3px;margin-bottom:40px;}
+.sec-divider{height:1px;background:linear-gradient(90deg,var(--cyan),var(--orange),transparent);
+  opacity:.3;margin-bottom:40px;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.about-text p{font-size:15px;color:#8aa0b8;line-height:1.8;margin-bottom:14px;}
+.about-text p strong{color:var(--text);}
+.info-list{display:flex;flex-direction:column;gap:10px;}
+.info-row{display:flex;gap:12px;font-size:13px;align-items:flex-start;}
+.info-key{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:1px;width:100px;flex-shrink:0;padding-top:2px;}
+.info-val{color:var(--text);font-weight:500;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.skill-card{background:var(--bg2);border:1px solid var(--border);padding:18px;
+  transition:border-color .2s;}
+.skill-card:hover{border-color:rgba(191,0,255,.3);}
+.skill-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.skill-name{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text);letter-spacing:1px;}
+.skill-pct{font-family:'Orbitron',monospace;font-size:12px;color:var(--cyan);}
+.skill-bar{height:4px;background:rgba(255,255,255,.05);overflow:hidden;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--orange));
+  animation:fillAnim 1.5s ease both;}
+.skill-fill.green{background:linear-gradient(90deg,var(--green),var(--cyan));}
+@keyframes fillAnim{from{width:0!important;}}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.project-card{background:var(--bg2);border:1px solid var(--border);padding:22px;
+  position:relative;overflow:hidden;transition:all .2s;}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--orange));opacity:0;transition:opacity .2s;}
+.project-card:hover{border-color:rgba(191,0,255,.3);transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.project-card:hover::before{opacity:1;}
+.project-icon{font-size:28px;margin-bottom:14px;}
+.project-title{font-family:'Orbitron',monospace;font-size:13px;color:#fff;
+  letter-spacing:1px;margin-bottom:8px;}
+.project-desc{font-size:13px;color:#8aa0b8;line-height:1.6;margin-bottom:14px;}
+.project-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.ptag{font-family:'Share Tech Mono',monospace;font-size:9px;
+  padding:3px 8px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;}
+.ptag.orange{border-color:rgba(255,107,0,.2);color:var(--orange);}
+.ptag.green{border-color:rgba(0,255,136,.2);color:var(--green);}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.contact-info{}
+.contact-info p{font-size:15px;color:#8aa0b8;line-height:1.8;margin-bottom:20px;}
+.contact-links{display:flex;flex-direction:column;gap:10px;}
+.contact-link{display:flex;align-items:center;gap:12px;font-family:'Share Tech Mono',monospace;
+  font-size:11px;color:var(--muted);text-decoration:none;padding:10px 14px;
+  border:1px solid var(--border);transition:all .2s;letter-spacing:1px;}
+.contact-link:hover{border-color:rgba(0,245,255,.3);color:var(--cyan);background:rgba(191,0,255,.04);}
+.contact-link span{font-size:16px;}
+.contact-form{}
+.form-group{margin-bottom:12px;}
+.form-label{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);
+  letter-spacing:2px;margin-bottom:6px;display:block;}
+.form-input,.form-textarea{width:100%;background:var(--bg2);border:1px solid var(--border);
+  color:var(--text);padding:10px 14px;font-family:'Rajdhani',sans-serif;
+  font-size:14px;outline:none;transition:border-color .2s;}
+.form-input:focus,.form-textarea:focus{border-color:var(--cyan);}
+select.form-input{cursor:pointer;color:var(--text);}
+.form-textarea{min-height:90px;resize:none;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:24px 20px;text-align:center;
+  position:relative;z-index:1;}
+.footer-text{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:2px;}
+.footer-text span{color:var(--cyan);}
+
+/* CORNER DECO */
+.corner-deco{position:fixed;z-index:2;pointer-events:none;}
+.corner-deco::before,.corner-deco::after{content:'';position:absolute;background:var(--cyan);opacity:.4;}
+.corner-deco::before{width:2px;height:40px;}
+.corner-deco::after{width:40px;height:2px;}
+.cd-tl{top:68px;left:16px;}
+.cd-tr{top:68px;right:16px;transform:scaleX(-1);}
+.cd-bl{bottom:16px;left:16px;transform:scaleY(-1);}
+.cd-br{bottom:16px;right:16px;transform:scale(-1);}
+.cd-bl::before,.cd-bl::after,.cd-br::before,.cd-br::after{background:var(--orange);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-burger{display:flex;}
+  .hero-inner{grid-template-columns:1fr;gap:32px;padding:40px 0;text-align:center;}
+  .hero-right{order:-1;}
+  .hero-avatar-wrap{width:200px;height:200px;margin:0 auto;}
+  .hero-initials{font-size:36px;}
+  .hero-desc{margin:0 auto;}
+  .hero-btns{justify-content:center;}
+  .hero-stats{justify-content:center;}
+  .about-grid{grid-template-columns:1fr;}
+  .contact-wrap{grid-template-columns:1fr;}
+  .sec-pad{padding:60px 0;}
+}
+@media(max-width:480px){
+  .hero-name{font-size:32px;}
+  .projects-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr;}
+}
+
+/* NEXASHIELD GATE */
+#nx-shield{position:fixed;inset:0;background:#05020f;z-index:9999;
+  display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto;}
+.nxs-box{width:100%;max-width:440px;}
+.nxs-tb{display:flex;justify-content:space-between;padding:6px 12px;
+  background:rgba(191,0,255,.04);border:1px solid rgba(191,0,255,.2);border-bottom:none;
+  font-family:Share Tech Mono,monospace;font-size:10px;color:#5a3a70;}
+.nxs-dot{width:6px;height:6px;border-radius:50%;background:#ff6b00;display:inline-block;animation:blink 1s infinite;margin-right:4px;}
+.nxs-panel{background:#0d0620;border:1px solid rgba(191,0,255,.25);padding:24px 20px 20px;position:relative;}
+.nxs-panel::before{content:'';position:absolute;top:0;left:0;width:44px;height:44px;border-top:2px solid #bf00ff;border-left:2px solid #bf00ff;opacity:.5;}
+.nxs-panel::after{content:'';position:absolute;bottom:0;right:0;width:44px;height:44px;border-bottom:2px solid #ff6b00;border-right:2px solid #ff6b00;opacity:.5;}
+.nxs-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.nxs-logo svg{width:44px;height:44px;filter:drop-shadow(0 0 8px #bf00ff);}
+.nxs-logo h2{font-family:Orbitron,monospace;font-size:16px;font-weight:900;color:#bf00ff;letter-spacing:3px;}
+.nxs-logo p{font-family:Share Tech Mono,monospace;font-size:9px;color:#5a3a70;letter-spacing:2px;margin-top:2px;}
+.nxs-div{height:1px;background:linear-gradient(90deg,transparent,#bf00ff,#ff6b00,transparent);opacity:.4;margin:12px 0;}
+.nxs-site{display:flex;align-items:center;gap:10px;background:rgba(191,0,255,.04);border:1px solid rgba(191,0,255,.15);padding:9px 12px;margin-bottom:14px;}
+.nxs-url{font-family:Share Tech Mono,monospace;font-size:11px;color:#bf00ff;}
+.nxs-lbl{font-size:10px;color:#5a3a70;margin-top:1px;}
+.nxs-bdg{font-family:Share Tech Mono,monospace;font-size:9px;padding:2px 7px;border:1px solid #ff6b00;color:#ff6b00;letter-spacing:1px;margin-left:auto;white-space:nowrap;}
+.nxs-h{font-family:Orbitron,monospace;font-size:12px;color:#fff;letter-spacing:2px;margin-bottom:4px;}
+.nxs-sub{font-size:12px;color:#5a3a70;margin-bottom:14px;line-height:1.5;}
+.nxs-steps{border:1px solid rgba(191,0,255,.15);padding:12px;background:rgba(191,0,255,.02);margin-bottom:10px;}
+.nxs-step{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-family:Share Tech Mono,monospace;font-size:10px;}
+.nxs-step:last-child{margin-bottom:0;}
+.nxs-ic{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;}
+.nxs-ic.done{background:rgba(0,255,136,.1);border:1px solid #00ff88;color:#00ff88;}
+.nxs-ic.run{background:rgba(191,0,255,.1);border:1px solid #bf00ff;color:#bf00ff;animation:nxpulse 1.5s infinite;}
+.nxs-ic.wait{background:rgba(90,58,112,.1);border:1px solid #5a3a70;color:#5a3a70;}
+@keyframes nxpulse{0%,100%{box-shadow:0 0 0 0 rgba(191,0,255,.4);}50%{box-shadow:0 0 0 3px rgba(191,0,255,0);}}
+.nxs-lb{flex:1;}.nxs-lb.done{color:#00ff88;}.nxs-lb.wait{color:#5a3a70;}
+.nxs-st{font-size:9px;margin-left:auto;}.nxs-st.done{color:#00ff88;}.nxs-st.run{color:#bf00ff;animation:blink 1s infinite;}.nxs-st.wait{color:#5a3a70;}
+.nxs-pb-l{display:flex;justify-content:space-between;font-family:Share Tech Mono,monospace;font-size:9px;color:#5a3a70;margin-bottom:4px;}
+.nxs-pb{height:4px;background:rgba(191,0,255,.08);overflow:hidden;}
+.nxs-pbf{height:100%;background:linear-gradient(90deg,#bf00ff,#ff6b00);box-shadow:0 0 6px #bf00ff;width:0%;transition:width .25s;}
+.nxs-ch{border:1px solid rgba(191,0,255,.2);padding:12px;background:rgba(0,0,0,.3);margin-bottom:10px;display:none;flex-direction:column;align-items:center;gap:10px;}
+.nxs-ch.show{display:flex;}
+.nxs-clbl{font-family:Orbitron,monospace;font-size:9px;color:#bf00ff;letter-spacing:2px;}
+.nxs-crow{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid rgba(191,0,255,.2);width:100%;background:rgba(191,0,255,.03);cursor:pointer;user-select:none;transition:all .2s;}
+.nxs-crow:hover{background:rgba(191,0,255,.08);}
+.nxs-cbox{width:20px;height:20px;border:2px solid #5a3a70;display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;}
+.nxs-cbox.checked{border-color:#00ff88;background:rgba(0,255,136,.1);}
+.nxs-cchk{opacity:0;color:#00ff88;font-size:12px;transition:opacity .3s;}
+.nxs-cbox.checked .nxs-cchk{opacity:1;}
+.nxs-ring{width:44px;height:44px;position:relative;display:none;}
+.nxs-ring.show{display:block;}
+.nxs-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:#bf00ff;border-right-color:#bf00ff;animation:spin 1s linear infinite;}
+.nxs-ring::after{content:'';position:absolute;inset:7px;border-radius:50%;border:1px solid transparent;border-bottom-color:#ff6b00;animation:spin 1.5s linear infinite reverse;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.nxs-succ{display:none;flex-direction:column;align-items:center;gap:6px;padding:12px;background:rgba(0,255,136,.03);border:1px solid rgba(0,255,136,.2);margin-bottom:10px;}
+.nxs-succ.show{display:flex;}
+.nxs-sico{font-size:24px;}.nxs-stxt{font-family:Orbitron,monospace;font-size:11px;color:#00ff88;letter-spacing:2px;}
+.nxs-ssub{font-family:Share Tech Mono,monospace;font-size:9px;color:#5a3a70;text-align:center;}
+.nxs-rbar{width:100%;height:3px;background:rgba(0,255,136,.1);}
+.nxs-rfill{height:100%;background:#00ff88;width:0%;box-shadow:0 0 5px #00ff88;}
+.nxs-bb{display:flex;justify-content:space-between;padding:6px 12px;background:rgba(191,0,255,.02);border:1px solid rgba(191,0,255,.2);border-top:none;font-family:Share Tech Mono,monospace;font-size:9px;color:#5a3a70;}
+
+</style>
+</head>
+<body>
+
+<!-- NEXASHIELD GATE -->
+<div id="nx-shield">
+  <div class="nxs-box">
+    <div class="nxs-tb"><span><span class="nxs-dot"></span>NEXASHIELD-v3.4</span><span id="nxs-clock">00:00:00</span><span>ID-AS</span></div>
+    <div class="nxs-panel">
+      <div class="nxs-logo">
+        <svg viewBox="0 0 52 52" fill="none">
+          <polygon points="26,2 50,14 50,38 26,50 2,38 2,14" stroke="#bf00ff" stroke-width="1.5" fill="rgba(191,0,255,0.05)"/>
+          <polygon points="26,10 42,18 42,34 26,42 10,34 10,18" stroke="#ff6b00" stroke-width="1" fill="rgba(255,107,0,0.05)"/>
+          <path d="M26 16 L33 20 L33 30 L26 34 L19 30 L19 20 Z" stroke="#bf00ff" stroke-width="1.5" fill="rgba(191,0,255,0.15)"/>
+          <circle cx="26" cy="26" r="3" fill="#bf00ff" opacity=".9"/>
+        </svg>
+        <div><h2>NEXASHIELD</h2><p>ADVANCED CYBER PROTECTION</p></div>
+      </div>
+      <div class="nxs-div"></div>
+      <div class="nxs-site">
+        <span style="font-size:18px;">🌐</span>
+        <div><div class="nxs-url">iky-portfolio-liart.vercel.app</div><div class="nxs-lbl">Dilindungi NeXaShield</div></div>
+        <div class="nxs-bdg" id="nxs-bdg">CHECKING</div>
+      </div>
+      <div class="nxs-h">PEMERIKSAAN KEAMANAN</div>
+      <div class="nxs-sub">Koneksi Anda sedang diverifikasi sebelum mengakses portfolio IKY.</div>
+      <div class="nxs-steps">
+        <div class="nxs-step"><div class="nxs-ic run" id="nsi0">⟳</div><span class="nxs-lb" id="nsl0">Memeriksa IP & Reputasi</span><span class="nxs-st run" id="nss0">SCANNING...</span></div>
+        <div class="nxs-step"><div class="nxs-ic wait" id="nsi1">○</div><span class="nxs-lb wait" id="nsl1">Analisis Browser</span><span class="nxs-st wait" id="nss1">PENDING</span></div>
+        <div class="nxs-step"><div class="nxs-ic wait" id="nsi2">○</div><span class="nxs-lb wait" id="nsl2">Deteksi Bot</span><span class="nxs-st wait" id="nss2">PENDING</span></div>
+        <div class="nxs-step"><div class="nxs-ic wait" id="nsi3">○</div><span class="nxs-lb wait" id="nsl3">Verifikasi TLS</span><span class="nxs-st wait" id="nss3">PENDING</span></div>
+        <div style="margin-top:10px;"><div class="nxs-pb-l"><span>PROGRESS</span><span id="nxs-pct">0%</span></div><div class="nxs-pb"><div class="nxs-pbf" id="nxs-pbf"></div></div></div>
+      </div>
+      <div class="nxs-ch" id="nxs-ch">
+        <div class="nxs-clbl">◆ VERIFIKASI MANUSIA ◆</div>
+        <div class="nxs-crow" id="nxs-crow" onclick="nxsCheck()">
+          <div class="nxs-cbox" id="nxs-cbox"><span class="nxs-cchk">✓</span></div>
+          <div style="font-size:13px;font-weight:500;flex:1;color:#ddc8f0;">Saya bukan robot</div>
+        </div>
+        <div class="nxs-ring" id="nxs-ring"></div>
+      </div>
+      <div class="nxs-succ" id="nxs-succ">
+        <div class="nxs-sico">🛡️</div>
+        <div class="nxs-stxt">AKSES DIIZINKAN</div>
+        <div class="nxs-ssub">Memasuki portfolio IKY...</div>
+        <div class="nxs-rbar"><div class="nxs-rfill" id="nxs-rfill"></div></div>
+      </div>
+    </div>
+    <div class="nxs-bb"><span>🛡️ NeXaShield © 2025</span><span>Ray: <span id="nxs-ray"></span></span></div>
+  </div>
+</div>
+
+
+<!-- CORNER DECO -->
+<div class="corner-deco cd-tl"></div>
+<div class="corner-deco cd-tr"></div>
+<div class="corner-deco cd-bl"></div>
+<div class="corner-deco cd-br"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">IKY<span>.</span></a>
+    <div class="nav-space"></div>
+    <div class="nav-links">
+      <a class="nav-link active" href="#hero">HOME</a>
+      <a class="nav-link" href="#about">ABOUT</a>
+      <a class="nav-link" href="#biodata">BIODATA</a>
+      <a class="nav-link" href="#skills">SKILLS</a>
+      <a class="nav-link" href="#projects">PROJECTS</a>
+      <a class="nav-link" href="#contact">CONTACT</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a class="mobile-link" href="#hero">HOME</a>
+  <a class="mobile-link" href="#about">ABOUT</a>
+  <a class="mobile-link" href="#biodata">BIODATA</a>
+  <a class="mobile-link" href="#skills">SKILLS</a>
+  <a class="mobile-link" href="#projects">PROJECTS</a>
+  <a class="mobile-link" href="#contact">CONTACT</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          AVAILABLE FOR PROJECT
+        </div>
+        <div class="hero-name">
+          HELLO, I'M
+          <span>IKY</span>
+        </div>
+        <div class="hero-role">// OWNER & WEB DEVELOPER — NEXARA COMMUNITY</div>
+        <div class="hero-desc">
+          Membangun ekosistem digital NEXARA dari nol menggunakan HP Android + Termux.
+          Passionate di bidang web development, cyberpunk UI design, dan cybersecurity.
+        </div>
+        <div class="hero-btns">
+          <a class="btn-primary" href="#projects">LIHAT PROJECT</a>
+          <a class="btn-secondary" href="#contact">HUBUNGI SAYA</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">PLATFORM</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">V4</div>
+            <div class="stat-label">NEXARA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">1</div>
+            <div class="stat-label">HP ANDROID</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-avatar-wrap">
+          <div class="hero-avatar-bg"></div>
+          <div class="hero-hexagon">
+            <svg viewBox="0 0 280 280" fill="none">
+              <polygon points="140,10 255,70 255,210 140,270 25,210 25,70"
+                stroke="#bf00ff" stroke-width="1.5" fill="rgba(0,245,255,0.04)"/>
+              <polygon points="140,30 235,85 235,195 140,250 45,195 45,85"
+                stroke="#ff6b00" stroke-width="1" fill="rgba(255,107,0,0.04)"/>
+              <polygon points="140,55 215,98 215,182 140,225 65,182 65,98"
+                stroke="#bf00ff" stroke-width="1" fill="rgba(0,245,255,0.06)"/>
+              <circle cx="140" cy="10" r="4" fill="#bf00ff"/>
+              <circle cx="255" cy="70" r="3" fill="#bf00ff"/>
+              <circle cx="255" cy="210" r="3" fill="#bf00ff"/>
+              <circle cx="140" cy="270" r="4" fill="#bf00ff"/>
+              <circle cx="25" cy="210" r="3" fill="#bf00ff"/>
+              <circle cx="25" cy="70" r="3" fill="#bf00ff"/>
+              <line x1="140" y1="10" x2="140" y2="30" stroke="#bf00ff" stroke-width="1" opacity=".4"/>
+              <line x1="255" y1="70" x2="235" y2="85" stroke="#bf00ff" stroke-width="1" opacity=".4"/>
+              <line x1="255" y1="210" x2="235" y2="195" stroke="#bf00ff" stroke-width="1" opacity=".4"/>
+              <line x1="140" y1="270" x2="140" y2="250" stroke="#bf00ff" stroke-width="1" opacity=".4"/>
+              <line x1="25" y1="210" x2="45" y2="195" stroke="#bf00ff" stroke-width="1" opacity=".4"/>
+              <line x1="25" y1="70" x2="45" y2="85" stroke="#bf00ff" stroke-width="1" opacity=".4"/>
+            </svg>
+            <div class="hero-initials">IKY</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec-pad">
+  <div class="container">
+    <div class="sec-title">// <span>ABOUT</span> ME</div>
+    <div class="sec-sub">TENTANG SAYA</div>
+    <div class="sec-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Halo! Saya <strong>IKY</strong>, Owner & Founder dari <strong>NEXARA Community</strong> — komunitas digital berbasis Indonesia yang terus berkembang.</p>
+        <p>Saya membangun <strong>seluruh ekosistem NEXARA dari nol</strong> hanya menggunakan HP Android dan Termux — tanpa laptop, tanpa PC. Ini bukan hambatan, melainkan bukti bahwa <strong>semangat lebih kuat dari keterbatasan</strong>.</p>
+        <p>Passionate di bidang web development dengan aesthetic <strong>cyberpunk & futuristic</strong>, cybersecurity, dan membangun komunitas yang solid.</p>
+      </div>
+      <div class="info-list">
+        <div class="info-row">
+          <div class="info-key">NAMA</div>
+          <div class="info-val">IKY</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">LOKASI</div>
+          <div class="info-val">Indonesia 🇮🇩</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">ROLE</div>
+          <div class="info-val">Owner & Web Developer</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">KOMUNITAS</div>
+          <div class="info-val">NEXARA Community</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">TOOLS</div>
+          <div class="info-val">HP Android + Termux</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">HOBI</div>
+          <div class="info-val">Mobile Legends, Anime, Ngoding</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">STATUS</div>
+          <div class="info-val" style="color:var(--green);">● Active Developer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- BIODATA -->
+<section id="biodata" class="sec-pad">
+  <div class="container">
+    <div class="sec-title">// <span>BIODATA</span></div>
+    <div class="sec-sub">DATA DIRI LENGKAP</div>
+    <div class="sec-divider"></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// IDENTITAS</div>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;width:100px;">NAMA</td><td style="padding:9px 0;color:var(--text);font-weight:500;">IKY</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">NEGARA</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Indonesia 🇮🇩</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">STATUS</td><td style="padding:9px 0;color:var(--green);font-weight:500;">● Active Developer</td></tr>
+          <tr><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">BAHASA</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Indonesia, Inggris</td></tr>
+        </table>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// PERAN & KOMUNITAS</div>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;width:100px;">ROLE</td><td style="padding:9px 0;color:var(--cyan);font-weight:500;">Owner & Founder 👑</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">KOMUNITAS</td><td style="padding:9px 0;color:var(--text);font-weight:500;">NEXARA Community</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">DISCORD</td><td style="padding:9px 0;font-weight:500;"><a href="https://discord.gg/esd6qx6CE" target="_blank" style="color:var(--cyan);text-decoration:none;">Belajar Bersama NX</a></td></tr>
+          <tr><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">WHATSAPP</td><td style="padding:9px 0;font-weight:500;"><a href="https://wa.me/6285236936481" target="_blank" style="color:var(--green);text-decoration:none;">+62 852-3693-6481</a></td></tr>
+        </table>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// TOOLS & SETUP</div>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;width:100px;">DEVICE</td><td style="padding:9px 0;color:var(--text);font-weight:500;">HP Android 📱</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">TERMINAL</td><td style="padding:9px 0;color:var(--orange);font-weight:500;">Termux 🔧</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">SERVER</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Apache + PHP + MySQL</td></tr>
+          <tr><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">DEPLOY</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Vercel + GitHub</td></tr>
+        </table>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// MINAT & HOBI</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">👑 Owner NEXARA</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">💻 Web Dev</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">🛡️ Cybersecurity</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">🎮 Mobile Legends</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">📺 Anime</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">🎨 Cyberpunk UI</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">🌐 Termux</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.25);color:var(--cyan);letter-spacing:1px;">🚀 PHP & MySQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec-pad" style="background:rgba(0,245,255,.01);">
+  <div class="container">
+    <div class="sec-title">// <span>SKILLS</span> & TOOLS</div>
+    <div class="sec-sub">KEMAMPUAN TEKNIS</div>
+    <div class="sec-divider"></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">HTML & CSS</div>
+          <div class="skill-pct">95%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill green" style="width:95%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-pct">80%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">PHP</div>
+          <div class="skill-pct">75%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">MySQL / MariaDB</div>
+          <div class="skill-pct">70%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">Termux / Apache</div>
+          <div class="skill-pct">85%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill green" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">UI / UX Design</div>
+          <div class="skill-pct">88%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">Supabase</div>
+          <div class="skill-pct">72%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">Cybersecurity</div>
+          <div class="skill-pct">65%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec-pad">
+  <div class="container">
+    <div class="sec-title">// <span>PROJECTS</span></div>
+    <div class="sec-sub">KARYA & PLATFORM</div>
+    <div class="sec-divider"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon">🛡️</div>
+        <div class="project-title">NEXASHIELD</div>
+        <div class="project-desc">Sistem keamanan siber custom ala Cloudflare yang melindungi seluruh ekosistem platform NEXARA dari bot & akses tidak sah.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML</span>
+          <span class="ptag">CSS</span>
+          <span class="ptag">JavaScript</span>
+          <span class="ptag green">SECURITY</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🌐</div>
+        <div class="project-title">NEXARA V4 PLATFORM</div>
+        <div class="project-desc">Platform komunitas lengkap dengan sistem login, forum diskusi, leaderboard, chat real-time, admin & owner panel.</div>
+        <div class="project-tags">
+          <span class="ptag">PHP</span>
+          <span class="ptag">MySQL</span>
+          <span class="ptag">Apache</span>
+          <span class="ptag orange">FULL STACK</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🌐</div>
+        <div class="project-title">NEXARA V5</div>
+        <div class="project-desc">Website komunitas versi 5 dengan Firebase Realtime Database, fitur lengkap dan UI cyberpunk yang lebih modern.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML</span>
+          <span class="ptag">Firebase</span>
+          <span class="ptag">JavaScript</span>
+          <span class="ptag green">LIVE</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🔗</div>
+        <div class="project-title">NEXARA LINK HUB</div>
+        <div class="project-desc">Pusat navigasi ekosistem NEXARA — semua link platform tersedia dalam satu halaman dengan tampilan cyberpunk.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML</span>
+          <span class="ptag">CSS</span>
+          <span class="ptag orange">DEPLOYED</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-title">OWNER STATUS MONITOR</div>
+        <div class="project-desc">Website real-time untuk memantau kondisi owner. Hanya owner yang bisa update status, member hanya bisa melihat.</div>
+        <div class="project-tags">
+          <span class="ptag">PHP</span>
+          <span class="ptag">MySQL</span>
+          <span class="ptag green">REAL-TIME</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📚</div>
+        <div class="project-title">BELAJAR BERSAMA NX</div>
+        <div class="project-desc">Server Discord komunitas belajar coding & web development. Mengajar dari dasar HTML hingga full stack development.</div>
+        <div class="project-tags">
+          <span class="ptag">Discord</span>
+          <span class="ptag">Teaching</span>
+          <span class="ptag orange">ACTIVE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec-pad" style="background:rgba(0,245,255,.01);">
+  <div class="container">
+    <div class="sec-title">// <span>CONTACT</span></div>
+    <div class="sec-sub">HUBUNGI SAYA</div>
+    <div class="sec-divider"></div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p>Ada project menarik? Mau kolaborasi? Atau sekedar ingin ngobrol soal coding & teknologi? Jangan ragu untuk menghubungi saya!</p>
+        <div class="contact-links">
+          <a class="contact-link" href="https://discord.gg/esd6qx6CE" target="_blank" rel="noopener">
+            <span>💙</span> Discord — Belajar Bersama NX
+          </a>
+          <a class="contact-link" href="https://chat.whatsapp.com/BEdbcIhzX3B59hYnAxpNEW" target="_blank" rel="noopener"><span>💬</span> WhatsApp — NEXARA Community</a>
+          <a class="contact-link" href="http://localhost:8080/nexara/nexara-v4-update-7.html" target="_blank"><span>🌐</span> nexara-v4 — localhost:8080</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label class="form-label">NAMA</label>
+          <input class="form-input" id="cf-nama" type="text" placeholder="nama kamu...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">EMAIL (opsional)</label>
+          <input class="form-input" id="cf-email" type="email" placeholder="email kamu...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">KATEGORI PESAN</label>
+          <select class="form-input" id="cf-kategori" style="cursor:pointer;">
+            <option value="">-- Pilih kategori --</option>
+            <option value="Keluhan">🚨 Keluhan</option>
+            <option value="Error / Bug">🐛 Error / Bug</option>
+            <option value="Saran Update">💡 Saran Update Berikutnya</option>
+            <option value="Kolaborasi">🤝 Kolaborasi</option>
+            <option value="Lainnya">💬 Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">PESAN</label>
+          <textarea class="form-textarea" id="cf-pesan" placeholder="tulis pesanmu di sini..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;border-color:var(--cyan);background:rgba(191,0,255,.1);" onclick="sendMsg()">KIRIM VIA WHATSAPP →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">
+    <p>© 2025 <span>IKY</span> — Owner & Founder of <span>NEXARA</span> Community</p>
+    <p style="margin-top:6px;font-size:9px;">// built with ♥ using Android + Termux</p>
+  </div>
+</footer>
+
+<script>
+
+// NEXASHIELD
+(function(){
+  function rH(n){return[...Array(n)].map(()=>Math.floor(Math.random()*16).toString(16)).join('');}
+  document.getElementById('nxs-ray').textContent=rH(14).toUpperCase();
+  setInterval(()=>{
+    const n=new Date(),e=document.getElementById('nxs-clock');
+    if(e)e.textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');
+  },1000);
+  const steps=[{d:800},{d:650},{d:700},{d:550}];
+  const total=steps.reduce((a,b)=>a+b.d,0);
+  let elapsed=0,state='scan';
+  function mD(i){document.getElementById('nsi'+i).className='nxs-ic done';document.getElementById('nsi'+i).textContent='✓';document.getElementById('nsl'+i).className='nxs-lb done';document.getElementById('nss'+i).className='nxs-st done';document.getElementById('nss'+i).textContent='CLEAR';}
+  function mR(i){if(i>=steps.length)return;document.getElementById('nsi'+i).className='nxs-ic run';document.getElementById('nsi'+i).textContent='⟳';document.getElementById('nsl'+i).className='nxs-lb';document.getElementById('nss'+i).className='nxs-st run';document.getElementById('nss'+i).textContent='SCANNING...';}
+  function sP(p){document.getElementById('nxs-pbf').style.width=p+'%';document.getElementById('nxs-pct').textContent=Math.round(p)+'%';}
+  function runStep(i,cb){
+    if(i>=steps.length){cb();return;}
+    mR(i);const dur=steps[i].d,start=Date.now();
+    function tick(){const dt=Date.now()-start;sP(Math.min((elapsed+dt)/total*100,90));if(dt<dur)requestAnimationFrame(tick);else{elapsed+=dur;mD(i);runStep(i+1,cb);}}
+    requestAnimationFrame(tick);
+  }
+  runStep(0,()=>{
+    sP(90);document.getElementById('nxs-bdg').textContent='HUMAN CHECK';
+    const c=document.getElementById('nxs-ch');c.classList.add('show');
+    setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'center'}),100);
+    state='ch';
+  });
+  window.nxsCheck=function(){
+    if(state!=='ch')return;state='v';
+    document.getElementById('nxs-cbox').classList.add('checked');
+    document.getElementById('nxs-crow').style.pointerEvents='none';
+    document.getElementById('nxs-ring').classList.add('show');
+    setTimeout(()=>{
+      document.getElementById('nxs-ch').classList.remove('show');
+      document.getElementById('nxs-ring').classList.remove('show');
+      sP(100);
+      document.getElementById('nxs-bdg').textContent='VERIFIED ✓';
+      document.getElementById('nxs-bdg').style.color='#00ff88';
+      document.getElementById('nxs-bdg').style.borderColor='#00ff88';
+      const ss=document.getElementById('nxs-succ');ss.classList.add('show');
+      const f=document.getElementById('nxs-rfill');let w=0;
+      const iv=setInterval(()=>{w+=2.5;f.style.width=Math.min(w,100)+'%';
+        if(w>=100){clearInterval(iv);setTimeout(()=>{document.getElementById('nx-shield').style.display='none';},200);}
+      },18);
+    },1500);
+  };
+})();
+
+// NAVBAR ACTIVE ON SCROLL
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.getAttribute('id');
+  });
+  navLinks.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+
+// BURGER MENU
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobile-menu');
+
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// CONTACT FORM
+function sendMsg() {
+  const nama = document.getElementById('cf-nama').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const kategori = document.getElementById('cf-kategori').value;
+  const pesan = document.getElementById('cf-pesan').value.trim();
+  if (!nama || !pesan) { showToast('Isi nama & pesan dulu ya!', 'err'); return; }
+  if (!kategori) { showToast('Pilih kategori pesan dulu!', 'err'); return; }
+  // Real-time timestamp
+  const now = new Date();
+  const jam = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
+  const bulan = now.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+  const msg = 'Halo IKY! 👋%0A%0A'
+    + '*Nama :* ' + nama + '%0A'
+    + '*Jam :* ' + jam + ' WIB%0A'
+    + '*Tanggal :* ' + bulan + '%0A'
+    + '*Email :* ' + (email||'-') + '%0A'
+    + '*Kategori :* ' + kategori + '%0A%0A'
+    + '*Pesan :*%0A' + pesan;
+  window.open('https://wa.me/6285236936481?text=' + encodeURIComponent(decodeURIComponent(msg)), '_blank');
+  showToast('✅ Mengarahkan ke WhatsApp...', 'ok');
+  ['cf-nama','cf-email','cf-pesan'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('cf-kategori').value = '';
+}
+
+function showToast(msg, type) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;padding:12px 24px;font-family:Share Tech Mono,monospace;font-size:12px;letter-spacing:1px;border-left:3px solid ' + (type==='ok'?'#00ff88':'#ff2244') + ';background:rgba(6,13,26,.97);color:' + (type==='ok'?'#00ff88':'#ff2244') + ';animation:sli .3s ease;white-space:nowrap;';
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+// SMOOTH SCROLL NAVBAR
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return; // skip empty links
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
