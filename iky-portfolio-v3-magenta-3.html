@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="Y0lw3a_4a0pFVFW8AXbrmqvvqh-qTIkpu1HoDwnKR-o" />
+<title>IKY — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#03060f;--bg2:#060d1a;--cyan:#bf00ff;--orange:#ff6b00;
+  --green:#00ff88;--text:#c8e0f0;--muted:#3a5570;--border:rgba(191,0,255,0.12);
+  --purple:#b300ff;--pink:#ff00ff;--red:#ff2244;
+}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;}
+
+/* GRID BG */
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(191,0,255,.02) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(191,0,255,.02) 1px,transparent 1px);
+  background-size:44px 44px;pointer-events:none;z-index:0;}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(3,6,15,.95);border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);transition:all .3s;}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 20px;
+  height:58px;display:flex;align-items:center;gap:16px;}
+.nav-logo{font-family:'Orbitron',monospace;font-size:18px;font-weight:900;
+  color:var(--cyan);letter-spacing:4px;text-shadow:0 0 16px rgba(191,0,255,.4);
+  text-decoration:none;flex-shrink:0;}
+.nav-logo span{color:var(--orange);}
+.nav-space{flex:1;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-link{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;
+  color:var(--muted);text-decoration:none;padding:6px 12px;border:1px solid transparent;
+  transition:all .2s;cursor:pointer;}
+.nav-link:hover,.nav-link.active{color:var(--cyan);border-color:rgba(191,0,255,.2);
+  background:rgba(191,0,255,.05);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;}
+.nav-burger span{width:22px;height:2px;background:var(--cyan);transition:all .3s;display:block;}
+.nav-burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.nav-burger.open span:nth-child(2){opacity:0;}
+.nav-burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;top:58px;left:0;right:0;z-index:999;
+  background:rgba(3,6,15,.98);border-bottom:1px solid var(--border);
+  padding:16px;flex-direction:column;gap:4px;backdrop-filter:blur(12px);}
+.mobile-menu.open{display:flex;}
+.mobile-link{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px;
+  color:var(--muted);text-decoration:none;padding:12px 16px;border:1px solid transparent;
+  transition:all .2s;cursor:pointer;display:block;}
+.mobile-link:hover{color:var(--cyan);border-color:rgba(191,0,255,.2);background:rgba(191,0,255,.05);}
+
+/* SECTIONS */
+section{position:relative;z-index:1;}
+.container{max-width:1100px;margin:0 auto;padding:0 20px;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:58px;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0;}
+.hero-left{}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(191,0,255,.06);border:1px solid rgba(191,0,255,.2);
+  padding:5px 14px;font-family:'Share Tech Mono',monospace;font-size:10px;
+  color:var(--cyan);letter-spacing:2px;margin-bottom:20px;
+  animation:fadeUp .6s ease both;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero-name{font-family:'Orbitron',monospace;font-size:clamp(36px,6vw,72px);
+  font-weight:900;line-height:1;letter-spacing:2px;
+  color:#fff;text-shadow:0 0 40px rgba(191,0,255,.2);
+  animation:fadeUp .6s .1s ease both;}
+.hero-name span{color:var(--cyan);display:block;}
+.hero-role{font-family:'Share Tech Mono',monospace;font-size:14px;
+  color:var(--orange);letter-spacing:3px;margin:14px 0;
+  animation:fadeUp .6s .2s ease both;}
+.hero-desc{font-size:16px;color:#8aa0b8;line-height:1.7;max-width:480px;
+  animation:fadeUp .6s .3s ease both;}
+.hero-btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;
+  animation:fadeUp .6s .4s ease both;}
+.btn-primary{padding:11px 24px;font-family:'Orbitron',monospace;font-size:11px;
+  letter-spacing:2px;border:1px solid var(--cyan);background:rgba(191,0,255,.1);
+  color:var(--cyan);cursor:pointer;text-decoration:none;display:inline-block;
+  transition:all .2s;}
+.btn-primary:hover{background:rgba(191,0,255,.2);box-shadow:0 0 20px rgba(191,0,255,.2);}
+.btn-secondary{padding:11px 24px;font-family:'Orbitron',monospace;font-size:11px;
+  letter-spacing:2px;border:1px solid var(--border);background:transparent;
+  color:var(--muted);cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-secondary:hover{border-color:var(--orange);color:var(--orange);}
+.hero-right{display:flex;justify-content:center;align-items:center;
+  animation:fadeUp .6s .3s ease both;}
+.hero-avatar-wrap{position:relative;width:280px;height:280px;}
+.hero-avatar-bg{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(191,0,255,.1),transparent 70%);}
+.hero-hexagon{width:100%;height:100%;position:relative;display:flex;
+  align-items:center;justify-content:center;}
+.hero-hexagon svg{width:100%;height:100%;filter:drop-shadow(0 0 20px rgba(191,0,255,.3));
+  animation:hexspin 20s linear infinite;}
+@keyframes hexspin{0%{filter:drop-shadow(0 0 10px rgba(191,0,255,.2));}
+  50%{filter:drop-shadow(0 0 30px rgba(191,0,255,.5));}
+  100%{filter:drop-shadow(0 0 10px rgba(191,0,255,.2));}}
+.hero-initials{position:absolute;font-family:'Orbitron',monospace;font-size:52px;
+  font-weight:900;color:var(--cyan);text-shadow:0 0 30px rgba(191,0,255,.6);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* SECTION COMMON */
+.sec-pad{padding:80px 0;}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(20px,3vw,28px);
+  font-weight:700;color:#fff;letter-spacing:3px;margin-bottom:8px;}
+.sec-title span{color:var(--cyan);}
+.sec-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:3px;margin-bottom:40px;}
+.sec-divider{height:1px;background:linear-gradient(90deg,var(--cyan),var(--orange),transparent);
+  opacity:.3;margin-bottom:40px;}
+
+/* ABOUT & INFO */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.about-text p{font-size:15px;color:#8aa0b8;line-height:1.8;margin-bottom:14px;}
+.about-text p strong{color:var(--text);}
+.info-list{display:flex;flex-direction:column;gap:10px;}
+.info-row{display:flex;gap:12px;font-size:13px;align-items:flex-start;}
+.info-key{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:1px;width:100px;flex-shrink:0;padding-top:2px;}
+.info-val{color:var(--text);font-weight:500;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.skill-card{background:var(--bg2);border:1px solid var(--border);padding:18px;
+  transition:border-color .2s;}
+.skill-card:hover{border-color:rgba(191,0,255,.3);}
+.skill-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.skill-name{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text);letter-spacing:1px;}
+.skill-pct{font-family:'Orbitron',monospace;font-size:12px;color:var(--cyan);}
+.skill-bar{height:4px;background:rgba(255,255,255,.05);overflow:hidden;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--orange));
+  animation:fillAnim 1.5s ease both;}
+.skill-fill.green{background:linear-gradient(90deg,var(--green),var(--cyan));}
+@keyframes fillAnim{from{width:0!important;}}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.project-card{background:var(--bg2);border:1px solid var(--border);padding:22px;
+  position:relative;overflow:hidden;transition:all .2s;}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--cyan),var(--orange));opacity:0;transition:opacity .2s;}
+.project-card:hover{border-color:rgba(191,0,255,.3);transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.project-card:hover::before{opacity:1;}
+.project-icon{font-size:28px;margin-bottom:14px;}
+.project-title{font-family:'Orbitron',monospace;font-size:13px;color:#fff;
+  letter-spacing:1px;margin-bottom:8px;}
+.project-desc{font-size:13px;color:#8aa0b8;line-height:1.6;margin-bottom:14px;}
+.project-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.ptag{font-family:'Share Tech Mono',monospace;font-size:9px;
+  padding:3px 8px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;}
+.ptag.orange{border-color:rgba(255,107,0,.2);color:var(--orange);}
+.ptag.green{border-color:rgba(0,255,136,.2);color:var(--green);}
+
+/* ANNOUNCEMENT SECTION */
+#announcement{background:linear-gradient(135deg,rgba(191,0,255,.08),rgba(255,107,0,.05));}
+.announcement-box{background:rgba(13,6,32,.8);border:2px solid #bf00ff;padding:40px 30px;
+  position:relative;overflow:hidden;box-shadow:0 0 30px rgba(191,0,255,.3),inset 0 0 20px rgba(191,0,255,.05);}
+.announcement-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,#bf00ff,#ff6b00,transparent);animation:glow 3s infinite;}
+.announcement-box::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,#ff6b00,#bf00ff,transparent);animation:glow 3s infinite reverse;}
+@keyframes glow{0%,100%{opacity:.5;}50%{opacity:1;}}
+
+.ann-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(191,0,255,.15);
+  border:1px solid #bf00ff;padding:8px 16px;font-family:'Share Tech Mono',monospace;
+  font-size:10px;color:#bf00ff;letter-spacing:2px;margin-bottom:20px;
+  text-transform:uppercase;box-shadow:0 0 12px rgba(191,0,255,.3);}
+
+.ann-title{font-family:'Orbitron',monospace;font-size:28px;font-weight:900;
+  color:#fff;letter-spacing:2px;margin-bottom:12px;text-shadow:0 0 20px rgba(191,0,255,.5);}
+.ann-date{font-family:'Share Tech Mono',monospace;font-size:12px;color:#00ff88;
+  letter-spacing:2px;margin-bottom:30px;text-shadow:0 0 8px rgba(0,255,136,.4);}
+
+.ann-divider{height:2px;background:linear-gradient(90deg,transparent,#bf00ff,transparent);
+  margin:30px 0;opacity:.6;}
+
+.ann-feature{margin-bottom:28px;padding-left:20px;border-left:3px solid #bf00ff;}
+.ann-feature-title{font-family:'Orbitron',monospace;font-size:16px;font-weight:700;
+  color:#bf00ff;letter-spacing:1px;margin-bottom:12px;text-shadow:0 0 12px rgba(191,0,255,.4);}
+.ann-feature-desc{font-size:14px;color:#8aa0b8;line-height:1.7;margin-bottom:10px;}
+.ann-feature-list{display:flex;flex-direction:column;gap:6px;}
+.ann-list-item{font-size:13px;color:#8aa0b8;display:flex;gap:8px;}
+.ann-list-item::before{content:'◆';color:#ff6b00;font-weight:bold;flex-shrink:0;}
+
+.ann-cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
+.ann-btn{padding:12px 24px;font-family:'Orbitron',monospace;font-size:11px;
+  letter-spacing:2px;border:1px solid #bf00ff;background:rgba(191,0,255,.1);
+  color:#bf00ff;cursor:pointer;text-decoration:none;display:inline-block;
+  transition:all .3s;text-transform:uppercase;font-weight:600;}
+.ann-btn:hover{background:rgba(191,0,255,.25);box-shadow:0 0 20px rgba(191,0,255,.4);}
+.ann-btn.wa{border-color:#25d366;color:#25d366;background:rgba(37,211,102,.05);}
+.ann-btn.wa:hover{background:rgba(37,211,102,.15);box-shadow:0 0 20px rgba(37,211,102,.3);}
+
+.ann-feature-short,.ann-feature-full{margin-bottom:20px;}
+.ann-toggle-btn{padding:10px 20px;background:linear-gradient(135deg,#00ff88,#bf00ff);
+  border:none;color:#000;font-family:'Orbitron',monospace;font-size:11px;
+  letter-spacing:2px;font-weight:600;cursor:pointer;transition:all .3s;
+  text-transform:uppercase;box-shadow:0 0 20px rgba(0,255,136,.4);border-radius:4px;}
+.ann-toggle-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(0,255,136,.6),0 0 20px rgba(255,0,255,.4);}
+.ann-footer{margin-top:40px;padding-top:30px;border-top:1px solid rgba(191,0,255,.2);
+  text-align:center;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);
+  letter-spacing:1px;}
+.ann-footer span{color:#bf00ff;text-shadow:0 0 8px rgba(191,0,255,.3);}
+
+/* CONTACT SECTION */
+#contact{background:rgba(6,13,26,.3);border-top:1px solid var(--border);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+.contact-info p{font-size:15px;color:#8aa0b8;line-height:1.8;margin-bottom:20px;}
+
+/* KATEGORI FORM */
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-family:'Share Tech Mono',monospace;font-size:11px;
+  color:var(--cyan);letter-spacing:2px;margin-bottom:8px;text-transform:uppercase;}
+.form-select, .form-input, .form-textarea{
+  width:100%;padding:12px 14px;background:rgba(191,0,255,.05);
+  border:1px solid rgba(191,0,255,.2);color:var(--text);
+  font-family:'Rajdhani',sans-serif;font-size:14px;
+  transition:all .2s;border-radius:0;}
+.form-select:focus, .form-input:focus, .form-textarea:focus{
+  outline:none;border-color:var(--cyan);background:rgba(191,0,255,.08);
+  box-shadow:0 0 16px rgba(191,0,255,.1);}
+.form-select{cursor:pointer;}
+
+/* KATEGORI BUTTONS */
+.kategori-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;
+  margin-bottom:20px;}
+.kat-btn{padding:10px 14px;background:rgba(191,0,255,.05);border:1px solid rgba(191,0,255,.2);
+  color:var(--muted);font-family:'Share Tech Mono',monospace;font-size:11px;
+  letter-spacing:1px;cursor:pointer;transition:all .2s;text-align:left;
+  border-radius:0;}
+.kat-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(191,0,255,.1);}
+.kat-btn.selected{background:rgba(191,0,255,.2);border-color:var(--cyan);
+  color:var(--cyan);box-shadow:0 0 12px rgba(191,0,255,.2);}
+
+.btn-group{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-submit{padding:12px 28px;background:linear-gradient(135deg,var(--cyan),var(--green));
+  border:none;color:#000;font-family:'Orbitron',monospace;font-size:12px;
+  letter-spacing:2px;font-weight:600;cursor:pointer;transition:all .2s;
+  text-transform:uppercase;box-shadow:0 0 16px rgba(191,0,255,.3);}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(191,0,255,.5);}
+.btn-whatsapp{padding:12px 28px;background:linear-gradient(135deg,#25d366,#20ba5e);
+  border:none;color:#fff;font-family:'Orbitron',monospace;font-size:12px;
+  letter-spacing:2px;font-weight:600;cursor:pointer;transition:all .2s;
+  text-transform:uppercase;box-shadow:0 0 16px rgba(37,211,102,.3);
+  display:flex;align-items:center;gap:10px;
+  border:none;color:#fff;font-family:'Orbitron',monospace;font-size:12px;
+  letter-spacing:2px;font-weight:600;cursor:pointer;transition:all .2s;
+  text-transform:uppercase;}
+.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(37,211,102,.5);}
+.btn-gmail{padding:12px 28px;background:linear-gradient(135deg,#ea4335,#c5221f);
+  border:none;color:#fff;font-family:'Orbitron',monospace;font-size:12px;
+  letter-spacing:2px;font-weight:600;cursor:pointer;transition:all .2s;
+  text-transform:uppercase;box-shadow:0 0 16px rgba(234,67,53,.3);
+  display:flex;align-items:center;gap:10px;
+  border:none;color:#fff;font-family:'Orbitron',monospace;font-size:12px;
+  letter-spacing:2px;font-weight:600;cursor:pointer;transition:all .2s;
+  text-transform:uppercase;}
+.btn-gmail:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(234,67,53,.5);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:9999;
+  padding:12px 24px;font-family:'Share Tech Mono',monospace;font-size:12px;
+  letter-spacing:1px;border-left:4px solid;background:rgba(6,13,26,.97);
+  animation:slideUp .3s ease;white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis;}
+.toast.ok{border-color:var(--green);color:var(--green);}
+.toast.err{border-color:var(--red);color:var(--red);}
+@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}
+  to{opacity:1;transform:translateX(-50%) translateY(0);}}
+
+/* NEXASHIELD */
+#nx-shield{position:fixed;inset:0;background:rgba(3,6,15,.98);z-index:10000;
+  display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.nxs-container{width:90%;max-width:500px;background:rgba(6,13,26,.8);
+  border:1px solid rgba(191,0,255,.3);padding:40px 30px;text-align:center;
+  animation:slideDown .6s ease;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-40px);}
+  to{opacity:1;transform:translateY(0);}}
+.nxs-header{margin-bottom:30px;}
+.nxs-title{font-family:'Orbitron',monospace;font-size:18px;color:var(--cyan);
+  letter-spacing:2px;margin-bottom:8px;text-shadow:0 0 12px rgba(191,0,255,.3);}
+.nxs-ray{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);
+  letter-spacing:1px;}
+.nxs-clock{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--orange);
+  margin-top:4px;}
+
+/* PROGRESS BAR */
+.nxs-progress{margin:30px 0;background:rgba(0,0,0,.3);height:6px;border:1px solid rgba(191,0,255,.2);}
+.nxs-pbf{height:100%;background:linear-gradient(90deg,var(--cyan),var(--orange),var(--green));
+  width:0;transition:width .1s linear;box-shadow:0 0 12px rgba(191,0,255,.5);}
+.nxs-pct{font-family:'Orbitron',monospace;font-size:13px;color:var(--cyan);
+  margin-top:8px;text-shadow:0 0 8px rgba(191,0,255,.4);}
+
+/* SCAN ITEMS */
+.nxs-items{text-align:left;margin:30px 0;}
+.nxs-item{display:flex;align-items:center;gap:12px;margin-bottom:10px;
+  padding:8px 12px;background:rgba(191,0,255,.03);border-left:2px solid rgba(191,0,255,.2);}
+.nxs-ic{width:20px;height:20px;display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',monospace;font-size:12px;color:var(--orange);
+  text-shadow:0 0 8px rgba(191,0,255,.4);flex-shrink:0;}
+.nxs-ic.run{color:var(--cyan);animation:spin .8s linear infinite;}
+.nxs-ic.done{color:var(--green);}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.nxs-lb{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);
+  letter-spacing:1px;flex:1;}
+.nxs-lb.done{color:var(--green);}
+.nxs-st{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);
+  letter-spacing:1px;text-align:right;}
+.nxs-st.run{color:var(--cyan);}
+.nxs-st.done{color:var(--green);}
+
+/* HUMAN CHECK */
+.nxs-ch{display:none;margin:30px 0;padding:20px;background:rgba(191,0,255,.05);
+  border:1px solid rgba(191,0,255,.2);}
+.nxs-ch.show{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.nxs-check-text{font-family:'Share Tech Mono',monospace;font-size:12px;
+  color:var(--text);margin-bottom:12px;}
+.nxs-crow{display:flex;align-items:center;gap:12px;cursor:pointer;
+  padding:10px;background:rgba(191,0,255,.05);border:1px solid rgba(191,0,255,.2);
+  transition:all .2s;}
+.nxs-crow:hover{background:rgba(191,0,255,.08);border-color:var(--cyan);}
+.nxs-cbox{width:20px;height:20px;border:2px solid rgba(191,0,255,.4);
+  background:transparent;transition:all .2s;}
+.nxs-cbox.checked{background:var(--green);border-color:var(--green);
+  box-shadow:0 0 12px rgba(0,255,136,.4);}
+
+/* SUCCESS */
+.nxs-succ{display:none;text-align:center;margin:20px 0;}
+.nxs-succ.show{display:block;animation:fadeIn .3s ease;}
+.nxs-succ-text{font-family:'Orbitron',monospace;font-size:14px;color:var(--green);
+  margin-bottom:12px;text-shadow:0 0 12px rgba(0,255,136,.4);}
+.nxs-rfill{height:4px;background:linear-gradient(90deg,var(--green),var(--cyan));
+  width:0;transition:width .1s linear;}
+
+/* BADGE */
+.nxs-bdg{font-family:'Share Tech Mono',monospace;font-size:11px;
+  color:var(--cyan);border:1px solid rgba(191,0,255,.3);padding:6px 12px;
+  display:inline-block;letter-spacing:1px;text-shadow:0 0 8px rgba(191,0,255,.3);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .nav-burger{display:flex;}
+  .hero-inner{grid-template-columns:1fr;gap:30px;padding:40px 0;}
+  .hero-avatar-wrap{width:200px;height:200px;}
+  .hero-hexagon{display:none;}
+  .about-grid{grid-template-columns:1fr;}
+  .skills-grid{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .contact-wrap{grid-template-columns:1fr;gap:30px;}
+  .kategori-grid{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));}
+  .nxs-container{width:95%;padding:30px 20px;}
+  .hero-name{font-size:clamp(28px,5vw,48px);}
+}
+.btn-logo{width:14px;height:14px;display:inline;margin-right:8px;vertical-align:middle;}
+</style>
+</head>
+<body>
+
+<!-- NEXASHIELD -->
+<div id="nx-shield">
+  <div class="nxs-container">
+    <div class="nxs-header">
+      <div class="nxs-title">◆ NeXaShield ◆</div>
+      <div class="nxs-ray">RAY ID: <span id="nxs-ray">...</span></div>
+      <div class="nxs-clock"><span id="nxs-clock">00:00:00</span> UTC</div>
+    </div>
+    <div class="nxs-progress">
+      <div class="nxs-pbf" id="nxs-pbf"></div>
+    </div>
+    <div class="nxs-pct" id="nxs-pct">0%</div>
+    <div class="nxs-items">
+      <div class="nxs-item">
+        <div class="nxs-ic" id="nsi0">~</div>
+        <div class="nxs-lb" id="nsl0">Browser Scan</div>
+        <div class="nxs-st" id="nss0">SCANNING...</div>
+      </div>
+      <div class="nxs-item">
+        <div class="nxs-ic" id="nsi1">~</div>
+        <div class="nxs-lb" id="nsl1">Location Check</div>
+        <div class="nxs-st" id="nss1">SCANNING...</div>
+      </div>
+      <div class="nxs-item">
+        <div class="nxs-ic" id="nsi2">~</div>
+        <div class="nxs-lb" id="nsl2">System Verify</div>
+        <div class="nxs-st" id="nss2">SCANNING...</div>
+      </div>
+      <div class="nxs-item">
+        <div class="nxs-ic" id="nsi3">~</div>
+        <div class="nxs-lb" id="nsl3">Network Check</div>
+        <div class="nxs-st" id="nss3">SCANNING...</div>
+      </div>
+      <div class="nxs-item">
+        <div class="nxs-ic" id="nsi4">~</div>
+        <div class="nxs-lb" id="nsl4">Device Hash</div>
+        <div class="nxs-st" id="nss4">SCANNING...</div>
+      </div>
+      <div class="nxs-item">
+        <div class="nxs-ic" id="nsi5">~</div>
+        <div class="nxs-lb" id="nsl5">Final Check</div>
+        <div class="nxs-st" id="nss5">SCANNING...</div>
+      </div>
+    </div>
+    <div class="nxs-ch" id="nxs-ch">
+      <div class="nxs-check-text">I'm not a robot</div>
+      <div class="nxs-crow" id="nxs-crow" onclick="window.nxsCheck()">
+        <div class="nxs-cbox" id="nxs-cbox"></div>
+        <div style="flex:1;text-align:left;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);">Verifying...</div>
+      </div>
+    </div>
+    <div class="nxs-succ" id="nxs-succ">
+      <div class="nxs-succ-text">🔓 ACCESS GRANTED</div>
+      <div class="nxs-rfill" id="nxs-rfill"></div>
+    </div>
+    <div style="margin-top:20px;"><span class="nxs-bdg" id="nxs-bdg">SCANNING...</span></div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">IKY<span>.</span></a>
+    <div class="nav-space"></div>
+    <div class="nav-links">
+      <a href="#hero" class="nav-link active">HOME</a>
+      <a href="#announcement" class="nav-link">📢 ANNOUNCEMENT</a>
+      <a href="#about" class="nav-link">ABOUT</a>
+      <a href="#biodata" class="nav-link">BIODATA</a>
+      <a href="#skills" class="nav-link">SKILLS</a>
+      <a href="#projects" class="nav-link">PROJECTS</a>
+      <a href="#contact" class="nav-link">CONTACT</a>
+    </div>
+    <button id="burger" class="nav-burger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="mobile-menu">
+  <a href="#hero" class="mobile-link">HOME</a>
+  <a href="#announcement" class="mobile-link">📢 ANNOUNCEMENT</a>
+  <a href="#about" class="mobile-link">ABOUT</a>
+  <a href="#biodata" class="mobile-link">BIODATA</a>
+  <a href="#skills" class="mobile-link">SKILLS</a>
+  <a href="#projects" class="mobile-link">PROJECTS</a>
+  <a href="#contact" class="mobile-link">CONTACT</a>
+</div>
+
+<!-- HERO SECTION -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>AVAILABLE FOR WORK</span>
+        </div>
+        <h1 class="hero-name">IKY<span>PORTFOLIO</span></h1>
+        <p class="hero-role">» DEVELOPER × DESIGNER «</p>
+        <p class="hero-desc">Crafting digital experiences with cyberpunk aesthetics. Web developer, UI/UX enthusiast, and creative problem solver.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-primary">GET IN TOUCH</a>
+          <a href="#contact" class="btn-secondary">LEARN MORE</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-avatar-wrap">
+          <div class="hero-avatar-bg"></div>
+          <div class="hero-hexagon">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="100,20 180,60 180,140 100,180 20,140 20,60" fill="none" stroke="currentColor" stroke-width="2" stroke="#bf00ff"/>
+              <circle cx="100" cy="100" r="50" fill="none" stroke="currentColor" stroke-width="1.5" stroke="#bf00ff" opacity="0.5"/>
+            </svg>
+            <div class="hero-initials">IKY</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="sec-pad">
+  <div class="container">
+    <h2 class="sec-title">// <span>ABOUT</span> ME</h2>
+    <div class="sec-sub">TENTANG SAYA</div>
+    <div class="sec-divider"></div>
+    
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Halo! Saya <strong>IKY</strong>, Owner & Founder dari <strong>NEXARA Community</strong> — komunitas digital berbasis Indonesia yang terus berkembang.</p>
+        <p>Saya membangun <strong>seluruh ekosistem NEXARA dari nol</strong> hanya menggunakan HP Android dan Termux — tanpa laptop, tanpa PC. Ini bukan hambatan, melainkan bukti bahwa <strong>semangat lebih kuat dari keterbatasan</strong>.</p>
+        <p>Passionate di bidang web development dengan aesthetic <strong>cyberpunk & futuristic</strong>, cybersecurity, dan membangun komunitas yang solid.</p>
+      </div>
+      <div class="info-list">
+        <div class="info-row">
+          <div class="info-key">NAMA</div>
+          <div class="info-val">IKY</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">LOKASI</div>
+          <div class="info-val">Indonesia 🇮🇩</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">ROLE</div>
+          <div class="info-val">Owner & Web Developer</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">KOMUNITAS</div>
+          <div class="info-val">NEXARA Community</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">TOOLS</div>
+          <div class="info-val">HP Android + Termux</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">HOBI</div>
+          <div class="info-val">Mobile Legends, Anime, Ngoding</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">STATUS</div>
+          <div class="info-val" style="color:var(--green);">● Active Developer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIODATA SECTION -->
+<section id="biodata" class="sec-pad">
+  <div class="container">
+    <h2 class="sec-title">// <span>BIODATA</span></h2>
+    <div class="sec-sub">DATA DIRI LENGKAP</div>
+    <div class="sec-divider"></div>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;">
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// IDENTITAS</div>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;width:100px;">NAMA</td><td style="padding:9px 0;color:var(--text);font-weight:500;">IKY</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">NEGARA</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Indonesia 🇮🇩</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">STATUS</td><td style="padding:9px 0;color:var(--green);font-weight:500;">● Active Developer</td></tr>
+          <tr><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">BAHASA</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Indonesia, Inggris</td></tr>
+        </table>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// PERAN & KOMUNITAS</div>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;width:100px;">ROLE</td><td style="padding:9px 0;color:var(--cyan);font-weight:500;">Owner & Founder 👑</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">KOMUNITAS</td><td style="padding:9px 0;color:var(--text);font-weight:500;">NEXARA Community</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">DISCORD</td><td style="padding:9px 0;font-weight:500;"><a href="https://discord.gg/esd6qx6CE" target="_blank" style="color:var(--cyan);text-decoration:none;">Belajar Bersama NX</a></td></tr>
+          <tr><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">WHATSAPP</td><td style="padding:9px 0;font-weight:500;"><a href="https://wa.me/6285236936481" target="_blank" style="color:var(--green);text-decoration:none;">+62 852-3693-6481</a></td></tr>
+        </table>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// TOOLS & SETUP</div>
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;width:100px;">DEVICE</td><td style="padding:9px 0;color:var(--text);font-weight:500;">HP Android 📱</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">TERMINAL</td><td style="padding:9px 0;color:var(--orange);font-weight:500;">Termux 🔧</td></tr>
+          <tr style="border-bottom:1px solid var(--border);"><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">SERVER</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Apache + PHP + MySQL</td></tr>
+          <tr><td style="padding:9px 0;color:var(--muted);font-family:Share Tech Mono,monospace;font-size:10px;">DEPLOY</td><td style="padding:9px 0;color:var(--text);font-weight:500;">Vercel + GitHub</td></tr>
+        </table>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:20px;">
+        <div style="font-family:Share Tech Mono,monospace;font-size:9px;color:var(--muted);letter-spacing:3px;margin-bottom:14px;">// MINAT & HOBI</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">👑 Owner NEXARA</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">💻 Web Dev</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">🛡️ Cybersecurity</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">🎮 Mobile Legends</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">📺 Anime</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">🎨 Cyberpunk UI</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">🌐 Termux</span>
+          <span style="font-family:Share Tech Mono,monospace;font-size:9px;padding:4px 10px;border:1px solid rgba(191,0,255,.2);color:var(--cyan);letter-spacing:1px;">🚀 PHP & MySQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section id="skills" class="sec-pad">
+  <div class="container">
+    <h2 class="sec-title">// <span>SKILLS</span> & TOOLS</h2>
+    <div class="sec-sub">KEMAMPUAN TEKNIS</div>
+    <div class="sec-divider"></div>
+    
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">HTML & CSS</div>
+          <div class="skill-pct">95%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-pct">85%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">PHP & MySQL</div>
+          <div class="skill-pct">80%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">Responsive Design</div>
+          <div class="skill-pct">90%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill green" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">Firebase & Supabase</div>
+          <div class="skill-pct">75%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-header">
+          <div class="skill-name">Cybersecurity</div>
+          <div class="skill-pct">65%</div>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENT SECTION -->
+<section id="announcement" class="sec-pad">
+  <div class="container">
+    <div class="announcement-box">
+      <div class="ann-badge">⚠️ SECTION BETA</div>
+      <h2 class="ann-title">ANNOUNCEMENT MASIH BETA</h2>
+      <div class="ann-date">📅 STATUS: TAHAP PENGUJIAN</div>
+      
+      <div class="ann-divider"></div>
+      
+      <p style="font-size:15px;color:#8aa0b8;line-height:1.8;margin-bottom:20px;">
+        Halo <strong style="color:#00ff88;">NX Family!</strong> 👋 Section <strong style="color:#ff00ff;">Announcement</strong> ini masih dalam <strong style="color:#ff00ff;">tahap Beta.</strong> Fitur-fiturnya sedang terus dikembangkan dan akan ditingkatkan! 🚀
+      </p>
+
+      <div class="ann-feature">
+        <div class="ann-feature-title">⚡ Status Section Announcement</div>
+        <div class="ann-feature-list">
+          <div class="ann-list-item" style="color:#00ff88;">🔹 Tampilan sudah berfungsi dengan baik</div>
+          <div class="ann-list-item" style="color:#ff00ff;">🔹 Expandable content masih dalam testing</div>
+          <div class="ann-list-item" style="color:#00ff88;">🔹 Neon colors & styling sudah optimal</div>
+          <div class="ann-list-item" style="color:#ff00ff;">🔹 Responsive design untuk semua device</div>
+        </div>
+      </div>
+
+      <div id="ann-short" class="ann-feature-short">
+        <div class="ann-feature-title">🎯 Yang Sudah Berfungsi</div>
+        <div class="ann-feature-list">
+          <div class="ann-list-item">✅ Tampilan announcement yang menarik</div>
+          <div class="ann-list-item">✅ Expandable content dengan toggle button</div>
+          <div class="ann-list-item">✅ Neon color scheme (green & magenta)</div>
+          <div class="ann-list-item">✅ Responsive di semua ukuran layar</div>
+        </div>
+      </div>
+
+      <div id="ann-full" class="ann-feature-full" style="display:none;">
+        <div class="ann-feature-title">🎯 Fitur Section Announcement (Lengkap)</div>
+        
+        <div style="margin-bottom:20px;padding:15px;background:rgba(0,255,136,.08);border-left:3px solid #00ff88;">
+          <div style="color:#00ff88;font-weight:600;margin-bottom:8px;">✨ Tampilan & Design</div>
+          <div class="ann-feature-list">
+            <div class="ann-list-item">✅ Badge announcement yang eye-catching</div>
+            <div class="ann-list-item">✅ Title & date yang jelas</div>
+            <div class="ann-list-item">✅ Divider line dengan gradient</div>
+            <div class="ann-list-item">✅ Modern cyberpunk aesthetic</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;padding:15px;background:rgba(255,0,255,.08);border-left:3px solid #ff00ff;">
+          <div style="color:#ff00ff;font-weight:600;margin-bottom:8px;">📖 Expandable Content</div>
+          <div class="ann-feature-list">
+            <div class="ann-list-item">✅ Short view default</div>
+            <div class="ann-list-item">✅ Toggle button untuk expand</div>
+            <div class="ann-list-item">✅ Full content dengan 4 kategori</div>
+            <div class="ann-list-item">✅ Smooth transition animation</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:20px;padding:15px;background:rgba(0,255,136,.08);border-left:3px solid #00ff88;">
+          <div style="color:#00ff88;font-weight:600;margin-bottom:8px;">🎨 Neon Colors & Styling</div>
+          <div class="ann-feature-list">
+            <div class="ann-list-item">✅ Green neon (#00ff88)</div>
+            <div class="ann-list-item">✅ Magenta neon (#ff00ff)</div>
+            <div class="ann-list-item">✅ Glow effects & shadows</div>
+            <div class="ann-list-item">✅ Alternating color scheme</div>
+          </div>
+        </div>
+
+        <div style="padding:15px;background:rgba(255,0,255,.08);border-left:3px solid #ff00ff;">
+          <div style="color:#ff00ff;font-weight:600;margin-bottom:8px;">📱 Responsive Design</div>
+          <div class="ann-feature-list">
+            <div class="ann-list-item">✅ Mobile friendly layout</div>
+            <div class="ann-list-item">✅ Tablet optimized</div>
+            <div class="ann-list-item">✅ Desktop full experience</div>
+            <div class="ann-list-item">✅ Touch-friendly buttons</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin:20px 0;">
+        <button id="ann-toggle-btn" class="ann-toggle-btn" onclick="toggleAnnouncement()">
+          Baca Selengkapnya ↓
+        </button>
+      </div>
+
+      <div class="ann-divider"></div>
+
+      <div style="padding:15px;background:linear-gradient(135deg,rgba(0,255,136,.1),rgba(255,0,255,.1));border:1px solid rgba(0,255,136,.3);margin:20px 0;">
+        <p style="font-size:13px;color:#8aa0b8;margin-bottom:10px;text-align:center;">
+          <strong style="color:#ff00ff;">💡 FEEDBACK SECTION ANNOUNCEMENT</strong>
+        </p>
+        <p style="font-size:12px;color:#8aa0b8;text-align:center;margin-bottom:12px;">
+          Ada bug atau saran untuk section announcement? Chat langsung ke Owner! 🙏
+        </p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-size:12px;">
+          <span style="padding:6px 12px;background:rgba(0,255,136,.15);border:1px solid rgba(0,255,136,.3);color:#00ff88;">🐛 Bug Report</span>
+          <span style="padding:6px 12px;background:rgba(255,0,255,.15);border:1px solid rgba(255,0,255,.3);color:#ff00ff;">💡 Saran</span>
+          <span style="padding:6px 12px;background:rgba(0,255,136,.15);border:1px solid rgba(0,255,136,.3);color:#00ff88;">⭐ Feedback</span>
+        </div>
+      </div>
+
+      <div class="ann-cta">
+        <a href="https://wa.me/6285236936481?text=Halo%20Owner!%20Saya%20punya%20feedback%20untuk%20section%20announcement%20di%20portfolio" target="_blank" class="ann-btn wa">
+          💚 CHAT WA OWNER
+        </a>
+        <a href="#contact" class="ann-btn">
+          📨 HUBUNGI KAMI
+        </a>
+      </div>
+
+      <div class="ann-footer">
+        🛡️ Powered by <span>NeXaShield Security System</span><br>
+        ~ <span>Owner NEXARA</span> 👑
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="sec-pad">
+  <div class="container">
+    <h2 class="sec-title">// <span>PROJECTS</span></h2>
+    <div class="sec-sub">KARYA & PLATFORM</div>
+    <div class="sec-divider"></div>
+    
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-icon">🛡️</div>
+        <div class="project-title">NEXASHIELD</div>
+        <div class="project-desc">Sistem keamanan siber custom ala Cloudflare yang melindungi seluruh ekosistem platform NEXARA dari bot & akses tidak sah.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML</span>
+          <span class="ptag">CSS</span>
+          <span class="ptag">JavaScript</span>
+          <span class="ptag green">SECURITY</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🌐</div>
+        <div class="project-title">NEXARA V4 PLATFORM</div>
+        <div class="project-desc">Platform komunitas lengkap dengan sistem login, forum diskusi, leaderboard, chat real-time, admin & owner panel.</div>
+        <div class="project-tags">
+          <span class="ptag">PHP</span>
+          <span class="ptag">MySQL</span>
+          <span class="ptag">Apache</span>
+          <span class="ptag orange">FULL STACK</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🌐</div>
+        <div class="project-title">NEXARA V5</div>
+        <div class="project-desc">Website komunitas versi 5 dengan Firebase Realtime Database, fitur lengkap dan UI cyberpunk yang lebih modern.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML</span>
+          <span class="ptag">Firebase</span>
+          <span class="ptag">JavaScript</span>
+          <span class="ptag green">LIVE</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">🔗</div>
+        <div class="project-title">NEXARA LINK HUB</div>
+        <div class="project-desc">Pusat navigasi ekosistem NEXARA — semua link platform tersedia dalam satu halaman dengan tampilan cyberpunk.</div>
+        <div class="project-tags">
+          <span class="ptag">HTML</span>
+          <span class="ptag">CSS</span>
+          <span class="ptag orange">DEPLOYED</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-title">OWNER STATUS MONITOR</div>
+        <div class="project-desc">Website real-time untuk memantau kondisi owner. Hanya owner yang bisa update status, member hanya bisa melihat.</div>
+        <div class="project-tags">
+          <span class="ptag">PHP</span>
+          <span class="ptag">MySQL</span>
+          <span class="ptag green">REAL-TIME</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">📚</div>
+        <div class="project-title">BELAJAR BERSAMA NX</div>
+        <div class="project-desc">Server Discord komunitas belajar coding & web development. Mengajar dari dasar HTML hingga full stack development.</div>
+        <div class="project-tags">
+          <span class="ptag">Discord</span>
+          <span class="ptag">Teaching</span>
+          <span class="ptag orange">ACTIVE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact" class="sec-pad">
+  <div class="container">
+    <h2 class="sec-title">💬 GET IN<span> TOUCH</span></h2>
+    <div class="sec-sub">SEND ME A MESSAGE</div>
+    <div class="sec-divider"></div>
+    
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p><strong style="color:var(--cyan);">🟢 WhatsApp</strong><br>Langsung ke chat Owner. Cepat dan responsif!</p>
+        <p><strong style="color:#ea4335;">🔵 Gmail</strong><br>Email langsung ke Owner. Formal dan terorganisir.</p>
+        <p style="margin-top:30px;color:var(--muted);"><small>Informasi pesan akan otomatis terkirim dengan detail lengkap termasuk nama, waktu, dan perangkat Anda.</small></p>
+      </div>
+
+      <div>
+        <div class="form-group">
+          <label class="form-label">📋 Pilih Kategori Pesan</label>
+          <div class="kategori-grid">
+            <button type="button" class="kat-btn" onclick="selectKat(this, '🚨 Keluhan')">🚨 Keluhan</button>
+            <button type="button" class="kat-btn" onclick="selectKat(this, '🐛 Error / Bug')">🐛 Error / Bug</button>
+            <button type="button" class="kat-btn" onclick="selectKat(this, '💡 Saran Update')">💡 Saran Update</button>
+            <button type="button" class="kat-btn" onclick="selectKat(this, '🤝 Kolaborasi')">🤝 Kolaborasi</button>
+            <button type="button" class="kat-btn" onclick="selectKat(this, '🎓 Pertanyaan Belajar')">🎓 Pertanyaan Belajar</button>
+            <button type="button" class="kat-btn" onclick="selectKat(this, '💼 Project / Hire')">💼 Project / Hire</button>
+            <button type="button" class="kat-btn" onclick="selectKat(this, '💬 Lainnya')">💬 Lainnya</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">👤 Nama Lengkap</label>
+          <input type="text" id="cf-nama" class="form-input" placeholder="Siapa nama Anda?">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">📧 Email (Opsional)</label>
+          <input type="email" id="cf-email" class="form-input" placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">⭐ Rating (Opsional)</label>
+          <select id="cf-rating" class="form-input">
+            <option value="5">⭐⭐⭐⭐⭐ Excellent (5/5)</option>
+            <option value="4">⭐⭐⭐⭐ Very Good (4/5)</option>
+            <option value="3">⭐⭐⭐ Good (3/5)</option>
+            <option value="2">⭐⭐ Fair (2/5)</option>
+            <option value="1">⭐ Poor (1/5)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">💬 Pesan</label>
+          <textarea id="cf-pesan" class="form-textarea" rows="5" placeholder="Tulis pesan Anda di sini..."></textarea>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn-whatsapp" onclick="sendViaWA()">
+            <svg class="btn-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            KIRIM VIA WHATSAPP
+          </button>
+          <button class="btn-gmail" onclick="sendViaGmail()">
+            <svg class="btn-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+            </svg>
+            KIRIM VIA GMAIL
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:rgba(0,0,0,.3);border-top:1px solid var(--border);padding:40px 20px;text-align:center;color:var(--muted);">
+  <p style="font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:1px;">© 2025 IKY PORTFOLIO — All Rights Reserved</p>
+</footer>
+
+<script>
+// KATEGORI SELECTION
+var selectedKat = '';
+function selectKat(btn, kat) {
+  document.querySelectorAll('.kat-btn').forEach(function(b) { b.classList.remove('selected'); });
+  btn.classList.add('selected');
+  selectedKat = kat;
+}
+
+// GET DEVICE INFO
+function getDeviceInfo() {
+  var ua = navigator.userAgent;
+  var device = 'Unknown';
+  if (/Android/i.test(ua)) device = 'Android Phone';
+  else if (/iPhone|iPad/i.test(ua)) device = 'iOS Device';
+  else if (/Windows/i.test(ua)) device = 'Windows PC';
+  else if (/Mac/i.test(ua)) device = 'Mac';
+  else if (/Linux/i.test(ua)) device = 'Linux';
+  return device;
+}
+
+// SHOW TOAST
+function showToast(msg, type) {
+  var t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(function() { t.remove(); }, 3000);
+}
+
+// SEND VIA WHATSAPP
+function sendViaWA() {
+  var nama = document.getElementById('cf-nama').value.trim();
+  var email = document.getElementById('cf-email').value.trim();
+  var pesan = document.getElementById('cf-pesan').value.trim();
+  var rating = document.getElementById('cf-rating').value;
+  
+  if (!nama || !pesan) {
+    showToast('❌ Isi nama & pesan dulu ya!', 'err');
+    return;
+  }
+  if (!selectedKat) {
+    showToast('❌ Pilih kategori pesan dulu!', 'err');
+    return;
+  }
+  
+  var now = new Date();
+  var jam = String(now.getHours()).padStart(2, '0');
+  var menit = String(now.getMinutes()).padStart(2, '0');
+  var detik = String(now.getSeconds()).padStart(2, '0');
+  var tgl = now.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+  var device = getDeviceInfo();
+  
+  var stars = '⭐'.repeat(rating);
+  
+  var msg = '🟢 PESAN DARI PORTFOLIO 🟢\n\n' +
+    'Kategori: ' + selectedKat + '\n' +
+    'Nama: ' + nama + '\n' +
+    'Email: ' + (email || '-') + '\n' +
+    'Rating: ' + stars + ' (' + rating + '/5)\n' +
+    'Waktu: ' + jam + ':' + menit + ':' + detik + '\n' +
+    'Tanggal: ' + tgl + '\n' +
+    'Perangkat: ' + device + '\n\n' +
+    'Pesan:\n' + pesan;
+  
+  window.open('https://wa.me/6285236936481?text=' + encodeURIComponent(msg), '_blank');
+  showToast('✅ Mengarahkan ke WhatsApp...', 'ok');
+  resetForm();
+}
+
+// SEND VIA GMAIL
+function sendViaGmail() {
+  var nama = document.getElementById('cf-nama').value.trim();
+  var email = document.getElementById('cf-email').value.trim();
+  var pesan = document.getElementById('cf-pesan').value.trim();
+  var rating = document.getElementById('cf-rating').value;
+  
+  if (!nama || !pesan) {
+    showToast('❌ Isi nama & pesan dulu ya!', 'err');
+    return;
+  }
+  if (!selectedKat) {
+    showToast('❌ Pilih kategori pesan dulu!', 'err');
+    return;
+  }
+  
+  var now = new Date();
+  var jam = String(now.getHours()).padStart(2, '0');
+  var menit = String(now.getMinutes()).padStart(2, '0');
+  var detik = String(now.getSeconds()).padStart(2, '0');
+  var tgl = now.toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+  var device = getDeviceInfo();
+  
+  var stars = '⭐'.repeat(rating);
+  
+  var subject = 'PESAN DARI PORTFOLIO — ' + selectedKat;
+  var body = 'Kategori: ' + selectedKat + '\n' +
+    'Nama: ' + nama + '\n' +
+    'Email: ' + (email || '-') + '\n' +
+    'Rating: ' + stars + ' (' + rating + '/5)\n' +
+    'Waktu: ' + jam + ':' + menit + ':' + detik + '\n' +
+    'Tanggal: ' + tgl + '\n' +
+    'Perangkat: ' + device + '\n\n' +
+    'Pesan:\n' + pesan;
+  
+  window.open('mailto:ikyportofolio@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body), '_blank');
+  showToast('✅ Membuka Gmail...', 'ok');
+  resetForm();
+}
+
+// TOGGLE ANNOUNCEMENT
+function toggleAnnouncement() {
+  var shortDiv = document.getElementById('ann-short');
+  var fullDiv = document.getElementById('ann-full');
+  var btn = document.getElementById('ann-toggle-btn');
+  if (fullDiv.style.display === 'none') {
+    fullDiv.style.display = 'block';
+    shortDiv.style.display = 'none';
+    btn.textContent = 'Sembunyikan ↑';
+  } else {
+    fullDiv.style.display = 'none';
+    shortDiv.style.display = 'block';
+    btn.textContent = 'Baca Selengkapnya ↓';
+  }
+}
+
+function resetForm() {
+  document.getElementById('cf-nama').value = '';
+  document.getElementById('cf-email').value = '';
+  document.getElementById('cf-pesan').value = '';
+  selectedKat = '';
+  document.querySelectorAll('.kat-btn').forEach(function(b) { b.classList.remove('selected'); });
+}
+
+// NAVBAR ACTIVE ON SCROLL
+var sections = document.querySelectorAll('section[id]');
+var navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', function() {
+  var current = '';
+  sections.forEach(function(s) {
+    if (window.scrollY >= s.offsetTop - 80) current = s.getAttribute('id');
+  });
+  navLinks.forEach(function(l) {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+
+// BURGER MENU
+var burger = document.getElementById('burger');
+var mobileMenu = document.getElementById('mobile-menu');
+
+burger.addEventListener('click', function() {
+  burger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('.mobile-link').forEach(function(link) {
+  link.addEventListener('click', function() {
+    burger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = a.getAttribute('href');
+    if (href === '#') return;
+    var target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+<script>
+// NeXaShield - Fixed with requestAnimationFrame for smooth scanning
+(function() {
+  var state = 'scan';
+  var steps = [{d: 700}, {d: 600}, {d: 650}, {d: 500}, {d: 580}, {d: 520}];
+  var total = 0;
+  for (var x = 0; x < steps.length; x++) total += steps[x].d;
+  var elapsed = 0;
+
+  // Ray ID
+  var ray = '';
+  for (var r = 0; r < 14; r++) ray += Math.floor(Math.random() * 16).toString(16);
+  var rayEl = document.getElementById('nxs-ray');
+  if (rayEl) rayEl.textContent = ray.toUpperCase();
+
+  // Clock
+  function updateClock() {
+    var n = new Date();
+    var h = String(n.getHours()).padStart(2, '0');
+    var m = String(n.getMinutes()).padStart(2, '0');
+    var s = String(n.getSeconds()).padStart(2, '0');
+    var el = document.getElementById('nxs-clock');
+    if (el) el.textContent = h + ':' + m + ':' + s;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  function setProgress(p) {
+    var pbf = document.getElementById('nxs-pbf');
+    var pct = document.getElementById('nxs-pct');
+    if (pbf) pbf.style.width = Math.min(p, 100) + '%';
+    if (pct) pct.textContent = Math.round(Math.min(p, 100)) + '%';
+  }
+
+  function markDone(i) {
+    var ic = document.getElementById('nsi' + i);
+    var lb = document.getElementById('nsl' + i);
+    var st = document.getElementById('nss' + i);
+    if (ic) { ic.className = 'nxs-ic done'; ic.textContent = '✓'; }
+    if (lb) { lb.className = 'nxs-lb done'; }
+    if (st) { st.className = 'nxs-st done'; st.textContent = 'CLEAR'; }
+  }
+
+  function markRun(i) {
+    var ic = document.getElementById('nsi' + i);
+    var lb = document.getElementById('nsl' + i);
+    var st = document.getElementById('nss' + i);
+    if (ic) { ic.className = 'nxs-ic run'; ic.textContent = '⟳'; }
+    if (lb) { lb.className = 'nxs-lb'; }
+    if (st) { st.className = 'nxs-st run'; st.textContent = 'SCANNING...'; }
+  }
+
+  function runStep(i, cb) {
+    if (i >= steps.length) {
+      cb();
+      return;
+    }
+    markRun(i);
+    var dur = steps[i].d;
+    var start = Date.now();
+    function tick() {
+      var dt = Date.now() - start;
+      setProgress(Math.min((elapsed + dt) / total * 100, 90));
+      if (dt < dur) {
+        requestAnimationFrame(tick);
+      } else {
+        elapsed += dur;
+        markDone(i);
+        runStep(i + 1, cb);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  runStep(0, function() {
+    setProgress(90);
+    var bdg = document.getElementById('nxs-bdg');
+    if (bdg) bdg.textContent = 'HUMAN CHECK';
+    var ch = document.getElementById('nxs-ch');
+    if (ch) {
+      ch.className = 'nxs-ch show';
+      setTimeout(function() {
+        ch.scrollIntoView({behavior: 'smooth', block: 'center'});
+      }, 100);
+    }
+    state = 'ch';
+  });
+
+  window.nxsCheck = function() {
+    if (state !== 'ch') return;
+    state = 'v';
+    var cbox = document.getElementById('nxs-cbox');
+    var crow = document.getElementById('nxs-crow');
+    if (cbox) cbox.className = 'nxs-cbox checked';
+    if (crow) crow.style.pointerEvents = 'none';
+    
+    setTimeout(function() {
+      var ch = document.getElementById('nxs-ch');
+      if (ch) ch.className = 'nxs-ch';
+      setProgress(100);
+      var bdg = document.getElementById('nxs-bdg');
+      if (bdg) {
+        bdg.textContent = 'VERIFIED ✓';
+        bdg.style.color = '#00ff88';
+        bdg.style.borderColor = '#00ff88';
+      }
+      var succ = document.getElementById('nxs-succ');
+      if (succ) succ.className = 'nxs-succ show';
+      var fill = document.getElementById('nxs-rfill');
+      var w = 0;
+      var iv = setInterval(function() {
+        w += 2.5;
+        if (fill) fill.style.width = Math.min(w, 100) + '%';
+        if (w >= 100) {
+          clearInterval(iv);
+          setTimeout(function() {
+            var shield = document.getElementById('nx-shield');
+            if (shield) shield.style.display = 'none';
+          }, 200);
+        }
+      }, 18);
+    }, 1500);
+  };
+})();
+</script>
+
+</body>
+</html>
